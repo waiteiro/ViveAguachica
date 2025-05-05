@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración - Vive Aguachica</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .admin-section {
+            background: #F4ECD7;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1F2731;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #DE8434;
+            border-radius: 0.25rem;
+            background-color: #F4ECD7;
+            color: #1F2731;
+        }
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn-primary {
+            background: #DE8434;
+            color: #F4ECD7;
+        }
+        .btn-danger {
+            background: #C6732D;
+            color: #F4ECD7;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(31, 39, 49, 0.8);
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #F4ECD7;
+            width: 90%;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .redes-sociales-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .redes-sociales-input input {
+            flex: 1;
+        }
+        .redes-sociales-input button {
+            padding: 0.25rem 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4">
+            <h1 class="text-2xl font-bold text-primary">Administración - Vive Aguachica</h1>
+        </div>
+    </header>
+
+    <main class="admin-container">
+        <!-- Sección de Artistas -->
+        <section class="admin-section">
+            <h2 class="text-xl font-bold mb-4">Gestionar Artistas</h2>
+            <div id="artistas-list" class="mb-4">
+                <!-- Los artistas se cargarán aquí -->
+            </div>
+            <button id="add-artista" class="btn btn-primary">Agregar Artista</button>
+        </section>
+
+        <!-- Sección de Eventos -->
+        <section class="admin-section">
+            <h2 class="text-xl font-bold mb-4">Gestionar Eventos</h2>
+            <div id="eventos-list" class="mb-4">
+                <!-- Los eventos se cargarán aquí -->
+            </div>
+            <button id="add-evento" class="btn btn-primary">Agregar Evento</button>
+        </section>
+
+        <!-- Sección de Organizadores -->
+        <section class="admin-section">
+            <h2 class="text-xl font-bold mb-4">Gestionar Organizadores</h2>
+            <div id="organizadores-list" class="mb-4">
+                <!-- Los organizadores se cargarán aquí -->
+            </div>
+            <button id="add-organizador" class="btn btn-primary">Agregar Organizador</button>
+        </section>
+    </main>
+
+    <!-- Modal para formularios -->
+    <div id="formModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="formContainer"></div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html> 
