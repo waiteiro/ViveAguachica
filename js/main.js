@@ -434,3 +434,35 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Manejo del tema oscuro
+document.addEventListener('DOMContentLoaded', () => {
+    // Crear botón de cambio de tema
+    const themeToggle = document.createElement('button');
+    themeToggle.className = 'theme-toggle';
+    themeToggle.innerHTML = '🌙';
+    document.body.appendChild(themeToggle);
+
+    // Verificar preferencia guardada
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        themeToggle.innerHTML = savedTheme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Manejar clic en el botón
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeToggle.innerHTML = newTheme === 'dark' ? '☀️' : '🌙';
+    });
+
+    // Agregar clases de feedback visual a elementos interactivos
+    const interactiveElements = document.querySelectorAll('a, button, .card, .event-card, .service-card');
+    interactiveElements.forEach(element => {
+        element.classList.add('hover-lift', 'click-ripple');
+    });
+});

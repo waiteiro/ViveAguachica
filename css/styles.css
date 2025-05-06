@@ -17,6 +17,9 @@
     --secondary: #10b981;
     --dark: #1f2937;
     --light: #f3f4f6;
+    --transition-speed: 0.3s;
+    --hover-scale: 1.02;
+    --active-scale: 0.98;
 }
 
 /* Reset y estilos base */
@@ -31,6 +34,8 @@ body {
     line-height: 1.5;
     color: var(--text-light);
     background-color: var(--background);
+    transition: background-color var(--transition-speed) ease,
+                color var(--transition-speed) ease;
 }
 
 .container {
@@ -1197,4 +1202,88 @@ html {
 
 .fade-in {
     animation: fadeIn 0.5s ease forwards;
+}
+
+/* Feedback Visual Mejorado */
+.hover-lift {
+    transition: transform var(--transition-speed) ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+}
+
+.hover-scale {
+    transition: transform var(--transition-speed) ease;
+}
+
+.hover-scale:hover {
+    transform: scale(var(--hover-scale));
+}
+
+.hover-scale:active {
+    transform: scale(var(--active-scale));
+}
+
+.click-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.click-ripple::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+}
+
+.click-ripple:active::after {
+    transform: scale(0, 0);
+    opacity: .3;
+    transition: 0s;
+}
+
+/* Modo Oscuro */
+[data-theme="dark"] {
+    --background: #1a1a1a;
+    --text-light: #ffffff;
+    --gray-50: #2d2d2d;
+    --gray-100: #3d3d3d;
+    --gray-200: #4d4d4d;
+    --gray-300: #5d5d5d;
+    --gray-400: #6d6d6d;
+    --gray-500: #7d7d7d;
+    --gray-600: #8d8d8d;
+    --gray-700: #9d9d9d;
+    --gray-800: #adadad;
+    --gray-900: #ffffff;
+}
+
+/* Botón de cambio de tema */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 10px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform var(--transition-speed) ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
 }
