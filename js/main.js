@@ -443,11 +443,18 @@ document.addEventListener('DOMContentLoaded', () => {
     themeToggle.innerHTML = '🌙';
     document.body.appendChild(themeToggle);
 
-    // Verificar preferencia guardada
+    // Verificar preferencia guardada o preferencia del sistema
     const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Aplicar tema inicial
     if (savedTheme) {
         document.documentElement.setAttribute('data-theme', savedTheme);
         themeToggle.innerHTML = savedTheme === 'dark' ? '☀️' : '🌙';
+    } else if (prefersDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggle.innerHTML = '☀️';
+        localStorage.setItem('theme', 'dark');
     }
 
     // Manejar clic en el botón
@@ -458,6 +465,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         themeToggle.innerHTML = newTheme === 'dark' ? '☀️' : '🌙';
+    });
+
+    // Escuchar cambios en la preferencia del sistema
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) {
+            const newTheme = e.matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeToggle.innerHTML = newTheme === 'dark' ? '☀️' : '🌙';
+        }
     });
 
     // Agregar clases de feedback visual a elementos interactivos
