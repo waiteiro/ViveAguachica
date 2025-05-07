@@ -856,7 +856,7 @@
         apiKey: "AIzaSyB-BICWbcKpiP8ImeVBWYVh3eFmrS8mPWY",
         authDomain: "vive-aguachica.firebaseapp.com",
         projectId: "vive-aguachica",
-        storageBucket: "vive-aguachica.firebasestorage.app",
+        storageBucket: "viveaguachica.appspot.com",
         messagingSenderId: "551401519520",
         appId: "1:551401519520:web:c7d816f408135fc0f48cc5",
         measurementId: "G-N5E7BKDWWL"
@@ -867,6 +867,13 @@
       const analytics = getAnalytics(app);
       const auth = getAuth(app);
       const googleProvider = new GoogleAuthProvider();
+
+      // Exponer en window para acceso global
+      window.firebaseAuth = auth;
+      window.firebaseGoogleProvider = googleProvider;
+      window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+      window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+      window.signInWithPopup = signInWithPopup;
     </script>
 
     <!-- Modal de Login/Registro -->

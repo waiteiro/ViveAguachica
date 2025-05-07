@@ -15,6 +15,13 @@ const logoutButtonMobile = document.getElementById('logoutButtonMobile');
 
 let isLoginMode = true;
 
+// Reasignar funciones de Firebase desde window
+const auth = window.firebaseAuth;
+const googleProvider = window.firebaseGoogleProvider;
+const signInWithEmailAndPassword = window.signInWithEmailAndPassword;
+const createUserWithEmailAndPassword = window.createUserWithEmailAndPassword;
+const signInWithPopup = window.signInWithPopup;
+
 // Función para mostrar el modal
 function showAuthModal() {
     authModal.classList.remove('hidden');
@@ -171,4 +178,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // Permitir cerrar el modal haciendo clic fuera del contenido
+    if (authModal) {
+        authModal.addEventListener('click', function (e) {
+            if (e.target === authModal) {
+                hideAuthModal();
+            }
+        });
+    }
 }); 
